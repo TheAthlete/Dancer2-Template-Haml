@@ -1,10 +1,81 @@
-# NAME
+package Dancer2::Template::Haml;
+use 5.008005;
+use strict;
+use warnings FATAL => 'all';
+use utf8;
+
+use Moo;
+
+use Dancer2::Core::Types 'InstanceOf';
+use Dancer2::FileUtils 'path';
+
+use Carp 'croak';
+
+use Text::Haml;
+
+our $VERSION = 0.01; # VERSION
+# ABSTRACT: Text::Haml template engine wrapper for Dancer2
+
+with 'Dancer2::Core::Role::Template';
+
+has '+default_tmpl_ext' => ( default => sub { 'haml' }          );
+has '+engine'           => ( isa     => InstanceOf['Text::Haml']);
+
+sub view_pathname {
+  my ($self, $view) = @_;
+
+  $view = $self->_template_name($view);
+
+  return (ref $self->config->{path} eq 'HASH')  # virtual path
+            ? $view
+            : path($self->views, $view);
+
+}
+
+sub layout_pathname {
+  my ($self, $layout) = @_;
+
+  $layout = $self->_template_name($layout);
+
+  return (ref $self->config->{path} eq 'HASH')  # virtual path
+            ? path('layouts', $layout)
+            : path($self->views, 'layouts', $layout);
+}
+ 
+sub _build_engine {
+    my $self = shift;
+
+    my %haml_args = %{ $self->config };
+
+    #$haml_args{path} //= [$haml_args{location}]; # for Perl v5.10
+    $haml_args{path} = defined $haml_args{path} 
+      ? $haml_args{path} 
+      : [$haml_args{location}];
+
+    return Text::Haml->new(%haml_args);
+}
+
+sub render {
+    my ($self, $template, $vars) = @_;
+
+    my $haml = $self->engine;
+    my $content = $haml->render_file($template, %$vars)
+      or croak $haml->error;
+
+    return $content;
+}
+
+1;
+__END__
+=encoding utf8
+
+=head1 NAME
 
 Dancer2::Template::Haml - Text::Haml template engine wrapper for Dancer2
 
-# SYNOPSIS
+=head1 SYNOPSIS
 
-To use this engine, you may configure [Dancer2](https://metacpan.org/pod/Dancer2) via *config.yaml*:
+To use this engine, you may configure L<Dancer2> via C<config.yaml>:
 
     template: "haml"
     engines:
@@ -27,11 +98,11 @@ Or you may also change the rendering engine by setting it manually with C<set> k
 
 Example:
 
-*views/index.haml*:
+C<views/index.haml>:
 
   %h1= $foo
 
-*views/layouts/main.haml*:
+C<views/layouts/main.haml>:
 
   !!! 5
   %html
@@ -52,12 +123,12 @@ A Dancer 2 application:
     template 'index' => {foo => 'Bar!'};
   };
 
-# DESCRIPTION
+=head1 DESCRIPTION
  
 This is an interface between Dancer2's template engine abstraction layer and
-the [Text::Haml](https://metacpan.org/pod/Text::Haml) module.
+the L<Text::Haml> module.
  
-Based on the [Dancer2::Template::Xslate](https://metacpan.org/pod/Dancer2::Template::Xslate) and [Dancer::Template::Haml](https://metacpan.org/pod/Dancer::Template::Haml) modules.
+Based on the L<Dancer2::Template::Xslate> and L<Dancer::Template::Haml> modules.
 
 You can use templates and layouts defined in __DATA__ section:
 
@@ -109,21 +180,29 @@ You can use templates and layouts defined in __DATA__ section:
   %p= $foo
   %em text 2 texts 3
 
-# SEE ALSO
+=head1 SEE ALSO
 
-* [Dancer::Template::Haml](https://metacpan.org/pod/Dancer::Template::Haml)
+=over
+
+=item L<Dancer::Template::Haml>
 
 Haml rendering engine for Dancer 1.
 
-* [Text::Haml](https://metacpan.org/pod/Text::Haml)
+=back
+
+=over 2
+
+=item L<Text::Haml>
 
 Haml Perl implementation
 
-# AUTHOR
+=back
 
-TheAthlete <theathlet@yandex.ru>
+=head1 AUTHOR
 
-# LICENSE
+TheAthlete C<< <theathlete AT cpan DOT org> >>
+
+=head1 LICENSE
 
 Copyright © 2013 TheAthlete. 
 
