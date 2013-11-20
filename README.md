@@ -4,7 +4,7 @@ Dancer2::Template::Haml - Text::Haml template engine wrapper for Dancer2
 
 # SYNOPSIS
 
-To use this engine, you may configure [Dancer2](https://metacpan.org/pod/Dancer2) via *config.yaml*:
+To use this engine, you may configure [Dancer2](https://metacpan.org/pod/Dancer2) via `config.yaml`:
 
     template: "haml"
     engines:
@@ -13,8 +13,9 @@ To use this engine, you may configure [Dancer2](https://metacpan.org/pod/Dancer2
           cache: 1
           cache_dir: "./.text_haml_cache"
 
-Or you may also change the rendering engine by setting it manually with C<set> keyword:
+Or you may also change the rendering engine by setting it manually with `set` keyword:
  
+
     set template => 'haml';
     set engines => {
           template => {
@@ -27,11 +28,11 @@ Or you may also change the rendering engine by setting it manually with C<set> k
 
 Example:
 
-*views/index.haml*:
+`views/index.haml`:
 
     %h1= $foo
 
-*views/layouts/main.haml*:
+`views/layouts/main.haml`:
 
     !!! 5
     %html
@@ -54,12 +55,14 @@ A Dancer 2 application:
 
 # DESCRIPTION
  
+
 This is an interface between Dancer2's template engine abstraction layer and
 the [Text::Haml](https://metacpan.org/pod/Text::Haml) module.
  
+
 Based on the [Dancer2::Template::Xslate](https://metacpan.org/pod/Dancer2::Template::Xslate) and [Dancer::Template::Haml](https://metacpan.org/pod/Dancer::Template::Haml) modules.
 
-You can use templates and layouts defined in __DATA__ section:
+You can use templates and layouts defined in \_\_DATA\_\_ section:
 
     use Dancer2;
 
@@ -111,21 +114,27 @@ You can use templates and layouts defined in __DATA__ section:
 
 # SEE ALSO
 
-* [Dancer::Template::Haml](https://metacpan.org/pod/Dancer::Template::Haml)
+- [Dancer::Template::Haml](https://metacpan.org/pod/Dancer::Template::Haml)
 
-Haml rendering engine for Dancer 1.
+    Haml rendering engine for Dancer 1.
 
-* [Text::Haml](https://metacpan.org/pod/Text::Haml)
+- [Text::Haml](https://metacpan.org/pod/Text::Haml)
 
-Haml Perl implementation
+    Haml Perl implementation
+
+# DEVELOPMENT
+
+## Repository
+
+    https://github.com/TheAthlete/Dancer2-Template-Haml
 
 # AUTHOR
 
-TheAthlete <theathlet@yandex.ru>
+Viacheslav Koval, <athlete AT cpan DOT org>
 
 # LICENSE
 
-Copyright © 2013 TheAthlete. 
+Copyright © 2013 by Viacheslav Koval.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

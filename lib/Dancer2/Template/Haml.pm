@@ -198,13 +198,19 @@ Haml Perl implementation
 
 =back
 
+=head1 DEVELOPMENT
+
+=head2 Repository
+
+    https://github.com/TheAthlete/Dancer2-Template-Haml
+
 =head1 AUTHOR
 
-TheAthlete C<< <theathlete AT cpan DOT org> >>
+Viacheslav Koval, <athlete AT cpan DOT org>
 
 =head1 LICENSE
 
-Copyright © 2013 TheAthlete. 
+Copyright © 2013 by Viacheslav Koval.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

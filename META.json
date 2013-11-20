@@ -1,7 +1,7 @@
 {
    "abstract" : "Text::Haml template engine wrapper for Dancer2",
    "author" : [
-      "TheAthlete <theathlet@yandex.ru>"
+      "Viacheslav Koval, <athlete AT cpan DOT org>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v0.9.0, CPAN::Meta::Converter version 2.132830",
@@ -43,24 +43,32 @@
       },
       "runtime" : {
          "requires" : {
+            "Carp" : "0",
+            "Dancer2::Core::Role::Template" : "0",
+            "Dancer2::Core::Types" : "0",
+            "Dancer2::FileUtils" : "0",
+            "Moo" : "0",
+            "Text::Haml" : "0",
             "perl" : "5.008005",
-            "utf8": "0",
-            "strict": "0",
-            "warnings": "0",
-            "Moo": "0",
-            "Dancer2::Core::Types": "0",
-            "Dancer2::FileUtils": "0",
-            "Dancer2::Core::Role::Template": "0",
-            "Carp": "0",
-            "Text::Haml": "0"
-         }
-      },
-      "test" : {
-         "requires" : {
-            "Test::More" : "0.98"
+            "strict" : "0",
+            "utf8" : "0",
+            "warnings" : "0"
          }
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/TheAthlete/Dancer2-Template-Haml/issues"
+      },
+      "homepage" : "https://github.com/TheAthlete/Dancer2-Template-Haml",
+      "repository" : {
+         "url" : "https://github.com/TheAthlete/Dancer2-Template-Haml.git",
+         "web" : "https://github.com/TheAthlete/Dancer2-Template-Haml"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "TheAthlete <theathlet@yandex.ru>"
+   ]
 }
