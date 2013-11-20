@@ -15,42 +15,42 @@ To use this engine, you may configure [Dancer2](https://metacpan.org/pod/Dancer2
 
 Or you may also change the rendering engine by setting it manually with C<set> keyword:
  
-  set template => 'haml';
-  set engines => {
-        template => {
-          Haml => {
-            cache => 1,
-            cache_dir => './.text_haml_cache'
+    set template => 'haml';
+    set engines => {
+          template => {
+            Haml => {
+              cache => 1,
+              cache_dir => './.text_haml_cache'
+            },
           },
-        },
-  };
+    };
 
 Example:
 
 *views/index.haml*:
 
-  %h1= $foo
+    %h1= $foo
 
 *views/layouts/main.haml*:
 
-  !!! 5
-  %html
-    %head
-      %meta(charset = $settings->{charset})
-      %title= $settings->{appname}
-    %body
-      %div(style="color: green")= $content
-      #footer
-        Powered by
-        %a(href="https://metacpan.org/release/Dancer2") Dancer #{$dancer_version}
+    !!! 5
+    %html
+      %head
+        %meta(charset = $settings->{charset})
+        %title= $settings->{appname}
+      %body
+        %div(style="color: green")= $content
+        #footer
+          Powered by
+          %a(href="https://metacpan.org/release/Dancer2") Dancer #{$dancer_version}
 
 A Dancer 2 application:
 
-  use Dancer2;
+    use Dancer2;
 
-  get '/' => sub {
-    template 'index' => {foo => 'Bar!'};
-  };
+    get '/' => sub {
+      template 'index' => {foo => 'Bar!'};
+    };
 
 # DESCRIPTION
  
@@ -61,53 +61,53 @@ Based on the [Dancer2::Template::Xslate](https://metacpan.org/pod/Dancer2::Templ
 
 You can use templates and layouts defined in __DATA__ section:
 
-  use Dancer2;
+    use Dancer2;
 
-  use Data::Section::Simple qw/get_data_section/;
+    use Data::Section::Simple qw/get_data_section/;
 
-  my $vpath = get_data_section;
+    my $vpath = get_data_section;
 
-  set layout => 'main';
-  set appname => "Dancer2::With::Haml";
-  set charset => "UTF-8";
+    set layout => 'main';
+    set appname => "Dancer2::With::Haml";
+    set charset => "UTF-8";
 
-  set template => 'haml';
-  set engines => {
-        template => {
-          Haml => {
-            cache => 1,
-            cache_dir => './.text_haml_cache',
-            path => $vpath,
+    set template => 'haml';
+    set engines => {
+          template => {
+            Haml => {
+              cache => 1,
+              cache_dir => './.text_haml_cache',
+              path => $vpath,
+            },
           },
-        },
-  };
+    };
 
-  get '/bazinga' => sub {
-      template 'bazinga' => {
-        text => 'Bazinga?',
-        foo => 'Bar!',
-      };
-  };
+    get '/bazinga' => sub {
+        template 'bazinga' => {
+          text => 'Bazinga?',
+          foo => 'Bar!',
+        };
+    };
 
-  true;
+    true;
 
-  __DATA__
-  @@ layouts/main.haml
-  !!! 5
-  %html
-    %head
-      %meta(charset = $settings->{charset})
-      %title= $settings->{appname} 
-    %body
-      %div(style="color: green")= $content
-      #footer
-        Powered by
-        %a(href="https://metacpan.org/release/Dancer2") Dancer #{$dancer_version}
+    __DATA__
+    @@ layouts/main.haml
+    !!! 5
+    %html
+      %head
+        %meta(charset = $settings->{charset})
+        %title= $settings->{appname} 
+      %body
+        %div(style="color: green")= $content
+        #footer
+          Powered by
+          %a(href="https://metacpan.org/release/Dancer2") Dancer #{$dancer_version}
 
-  @@ bazinga.haml
-  %strong= $text
-  %p= $foo
-  %em text 2 texts 3
+    @@ bazinga.haml
+    %strong= $text
+    %p= $foo
+    %em text 2 texts 3
 
 # SEE ALSO
 
