@@ -130,7 +130,7 @@ You can use templates and layouts defined in \_\_DATA\_\_ section:
 
 # AUTHOR
 
-Viacheslav Koval, `athlete.cpan.org`
+Viacheslav Koval, <athlete AT cpan DOT org>
 
 # LICENSE
 
