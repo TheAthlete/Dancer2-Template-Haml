@@ -13,7 +13,7 @@ use Carp qw/croak/;
 
 use Text::Haml;
 
-our $VERSION = 0.02; # VERSION
+our $VERSION = 0.03; # VERSION
 # ABSTRACT: Text::Haml template engine wrapper for Dancer2
 
 with 'Dancer2::Core::Role::Template';
